@@ -18,9 +18,9 @@ const COLORS = [
 console.log(`Connecting to server at ${window.location.origin}`);
 console.log(`Connecting to server at http://${window.location.hostname}:${port}`);
 const socket = io(  
-  window.location.hostname == 'localhost'
-    ? `http://${window.location.hostname}:${port}`
-    : `http://${window.location.hostname}:10000`, // for render server
+  window.location.hostname == 'locationguessinggame.onrender.com'
+    ? `http://${window.location.hostname}:10000`
+    : `http://${window.location.hostname}:${port}`, // for render server
 {
   reconnection: true,
   reconnectionAttempts: 120,
