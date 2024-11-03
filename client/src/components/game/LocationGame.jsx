@@ -15,9 +15,10 @@ const COLORS = [
 ];
 
 // Initialize socket connection
+console.log(`Connecting to server at http://${window.location.hostname}:${port}`);
 const socket = io(`http://${window.location.hostname}:${port}`, {
   reconnection: true,
-  reconnectionAttempts: 5,
+  reconnectionAttempts: 30,
   reconnectionDelay: 1000
 });
 
