@@ -35,7 +35,6 @@ export default defineConfig({
     include: ['socket.io-client']
   },
   define: {
-    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+    'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
   }
 });
-  

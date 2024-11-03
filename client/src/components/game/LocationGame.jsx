@@ -16,7 +16,11 @@ const COLORS = [
 
 // Initialize socket connection
 console.log(`Connecting to server at http://${window.location.hostname}:${port}`);
-const socket = io(`http://${window.location.hostname}:10000`, {
+const socket = io(  
+  process.env.NODE_ENV === 'production'
+  ? window.location.origin  // Use same origin in production
+  : `http://${window.location.hostname}:${port}`,
+{
   reconnection: true,
   reconnectionAttempts: 120,
   reconnectionDelay: 1000
