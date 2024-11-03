@@ -16,9 +16,9 @@ const COLORS = [
 
 // Initialize socket connection
 console.log(`Connecting to server at http://${window.location.hostname}:${port}`);
-const socket = io(`http://${window.location.hostname}:${port}`, {
+const socket = io(`http://${window.location.hostname}:10000`, {
   reconnection: true,
-  reconnectionAttempts: 30,
+  reconnectionAttempts: 120,
   reconnectionDelay: 1000
 });
 
