@@ -15,8 +15,14 @@ const COLORS = [
 ];
 
 // Initialize socket connection
-console.log(`Connecting to server at http://${window.location.hostname}:${port}`);
-const socket = io(`http://${window.location.hostname}:10000`, {
+console.log(window.location.hostname == 'locationguessinggame.onrender.com'
+  ? `http://${window.location.hostname}:10000`
+  : `http://${window.location.hostname}:${port}`)
+const socket = io(  
+  window.location.hostname == 'locationguessinggame.onrender.com'
+    ? `http://${window.location.hostname}:10000`
+    : `http://${window.location.hostname}:${port}`, // for render server
+{
   reconnection: true,
   reconnectionAttempts: 120,
   reconnectionDelay: 1000

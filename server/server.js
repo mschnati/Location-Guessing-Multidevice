@@ -236,5 +236,24 @@ function generateGameCode() {
 app.use(errorHandler);
 
 server.listen(PORT, () => {
-  console.log('Server running on port ' + PORT);
+  const address = server.address();
+  const networkInterfaces = require('os').networkInterfaces();
+  
+  console.log(`Server running on:`);
+  console.log(`- http://localhost:${PORT}`);
+  
+  // Log all IPv4 addresses
+  Object.values(networkInterfaces).forEach(interfaces => {
+    interfaces.forEach(interface => {
+      if (interface.family === 'IPv4' && !interface.internal) {
+        console.log(`- http://${interface.address}:${PORT}`);
+      }
+    });
+  });
+
+  if (process.env.NODE_ENV === 'production') {
+    console.log('Running in production mode');
+  } else {
+    console.log('Running in development mode');
+  }
 });
