@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Textarea } from '@/components/ui/textarea';
 import { Upload, MapPin, Users, Trophy, ArrowRight, X } from 'lucide-react';
+const port = process.env.PORT || 3000;
 
 // Color palette for player identification
 const COLORS = [
@@ -14,7 +15,7 @@ const COLORS = [
 ];
 
 // Initialize socket connection
-const socket = io(`http://${window.location.hostname}:3000`, {
+const socket = io(`http://${window.location.hostname}:${port}`, {
   reconnection: true,
   reconnectionAttempts: 5,
   reconnectionDelay: 1000
