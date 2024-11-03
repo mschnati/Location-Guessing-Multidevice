@@ -45,6 +45,7 @@ npm run dev
 ```
 
 Server runs on http://localhost:3000. This IP is not needed to join
+
 Client runs on http://localhost:5173 and other IP-addresses that will be shown in the terminal that you can use to join from other devices
 
 ## Game Flow
