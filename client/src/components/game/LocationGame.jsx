@@ -15,17 +15,19 @@ const COLORS = [
 ];
 
 // Initialize socket connection
-console.log(window.location.hostname == 'locationguessinggame.onrender.com'
-  ? `http://${window.location.hostname}:10000`
-  : `http://${window.location.hostname}:${port}`)
-const socket = io(  
-  window.location.hostname == 'locationguessinggame.onrender.com'
-    ? `http://${window.location.hostname}:10000`
-    : `http://${window.location.hostname}:${port}`, // for render server
-{
+const isProd = window.location.hostname === 'locationguessinggame.onrender.com';
+const socketUrl = isProd 
+  ? `https://${window.location.hostname}`  // Render handles port internally
+  : `http://${window.location.hostname}:${port}`;
+
+console.log('Connecting to socket at:', socketUrl);
+
+const socket = io(socketUrl, {
   reconnection: true,
   reconnectionAttempts: 120,
-  reconnectionDelay: 1000
+  reconnectionDelay: 1000,
+  secure: isProd,
+  transports: isProd ? ['websocket'] : ['polling', 'websocket']
 });
 
 const LocationGame = () => {
@@ -128,6 +130,27 @@ const LocationGame = () => {
       socket.off('gameReset');
     };
   }, [isHost, players, gameCode]);
+
+  // Add connection monitoring
+  useEffect(() => {
+    socket.on('connect', () => {
+      console.log('Connected to server:', socket.id);
+    });
+
+    socket.on('connect_error', (error) => {
+      console.error('Connection error:', error);
+    });
+
+    socket.on('disconnect', (reason) => {
+      console.log('Disconnected:', reason);
+    });
+
+    return () => {
+      socket.off('connect');
+      socket.off('connect_error');
+      socket.off('disconnect');
+    };
+  }, []);
 
   // Calculate distance between two points on the image
   const calculateDistance = (point1, point2) => {
