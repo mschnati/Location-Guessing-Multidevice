@@ -2,7 +2,7 @@
     "scripts": {
       "install-client": "cd client && npm install",
       "install-server": "cd server && npm install",
-      "build-client": "cd client && npm install && npm install vite && npm run build",
+      "build-client": "cd client && npm install --production=false && npm run build",
       "build": "npm run install-server && npm run build-client",
       "start": "cd server && npm start"
     }
