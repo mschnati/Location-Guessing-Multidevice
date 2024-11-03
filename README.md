@@ -2,6 +2,9 @@
 
 A real-time multiplayer game where players guess locations on images uploaded by the host.
 
+## Website demo
+The game can be tested [here](https://locationguessinggame.onrender.com), but be patient as its a free server that will spin down with inactivity, which can delay requests by 50 seconds or more.
+
 ## Location Guessing Game
 This is a multi device version of my [game repository](https://github.com/mschnati/LocationGuessingGame) that was designed to be played on one device (tablet) and passed around.
 
